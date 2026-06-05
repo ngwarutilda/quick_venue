@@ -65,14 +65,23 @@ const getAvailableRooms = async (req, res) => {
       occupiedRoomIds.includes(room._id.toString())
     );
 
-    res.status(200).json({
-      success: true,
-      count: availableRooms.length,
-      data: {
-        available: availableRooms,
-        occupied: occupiedRooms,
-      },
-    });
+    const rankedRooms = availableRooms.map((room, index) => ({
+  ...room.toObject(),
+  available: true,
+  bestMatch: index === 0,
+}));
+
+const occupiedWithStatus = occupiedRooms.map((room) => ({
+  ...room.toObject(),
+  available: false,
+  bestMatch: false,
+}));
+
+res.status(200).json({
+  success: true,
+  count: rankedRooms.length,
+  data: [...rankedRooms, ...occupiedWithStatus],
+});
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

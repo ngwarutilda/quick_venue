@@ -28,6 +28,7 @@ app.use("/api/rooms", require("./routes/roomRoutes"));
 app.use("/api/classrooms", require("./routes/classroomRoutes"));
 app.use("/api/timetable", require("./routes/timetableRoutes"));
 app.use("/api/recommend", require("./routes/recommendRoutes"));
+app.use("/api/claims", require("./routes/claimRoutes"));
 
 // Health check
 app.get("/", (req, res) => {
