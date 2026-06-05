@@ -16,7 +16,8 @@ app.use(cors({
   origin: [
     'http://localhost:8080',
     'http://localhost:5173',
-    'https://roomie-finder-ub.lovable.app'
+    'https://roomie-finder-ub.lovable.app',
+    'https://quickvenue-frontend-2.vercel.app'
   ],
   credentials: true
 }));
